@@ -149,7 +149,12 @@ html,body{
 .section-title.text-end::after {
     display: none;
 }
-
+.para-title{
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fea116;
+}
 /*** Footer ***/
 .footer .btn.btn-social {
     margin-right: 5px;
