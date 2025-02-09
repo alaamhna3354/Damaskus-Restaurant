@@ -148,20 +148,33 @@ const menus = [
     },
 ];
 
-const menuContainer = document.getElementById('menu-container');
+const menuContainer = document.getElementById('accordionMenu');
 
-menus.forEach(menu => {
+menus.forEach((menu,index) => {
+    console.log(index);
+    console.log(menu);
     const section = document.createElement('div');
-    section.className = "container mb-5";
-
+    section.className = "accordion-item";
+  
     const titleDiv = document.createElement('div');
     titleDiv.className = "d-flex justify-content-center mb-5";
+    const button = document.createElement('button');
+    button.setAttribute("type", "button");
+    button.setAttribute("data-bs-toggle", "collapse");
+    button.setAttribute("data-bs-target", `#collapse${index}`);
+    if(index == 0){
+        button.setAttribute("aria-expanded", "true");
+    }
+    else{
+        button.setAttribute("aria-expanded", "false");
+    }
+    button.setAttribute("aria-controls", `collapse${index}`);
     const title = document.createElement('h5');
     title.className = "section-title ff-secondary text-center text-primary fw-normal";
     title.textContent = menu.category;
-    titleDiv.appendChild(title);
-    section.appendChild(titleDiv);
-
+    titleDiv.appendChild(button);
+    button.appendChild(title);
+    section.appendChild(button);
     const row = document.createElement('div');
     row.className = "row g-4";
 
@@ -195,8 +208,21 @@ menus.forEach(menu => {
         col.appendChild(itemDiv);
         row.appendChild(col);
     });
+    const bodyMenu = document.createElement('div');
+    if(index == 0){
+        bodyMenu.className = "accordion-collapse collapse show";
+    }
+    else{
+        bodyMenu.className = "accordion-collapse collapse";
+    }
+    bodyMenu.setAttribute("id", `collapse${index}`);
+    bodyMenu.setAttribute("data-bs-parent", `#accordionMenu`);
+    const bodyAccordion = document.createElement('div');
+    bodyAccordion.className = "accordion-body";
 
-    section.appendChild(row);
+    bodyMenu.appendChild(bodyAccordion);
+    bodyAccordion.appendChild(row);
+    section.appendChild(bodyMenu);
     menuContainer.appendChild(section);
 });
 
