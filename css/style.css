@@ -250,6 +250,14 @@ html,body{
     border-right: none;
 }
 /* Whatsapp */
+.menu-list{
+  position: relative;
+  z-index: 2;
+}
+  .Whatsapp-wrap{
+    position: relative;
+    z-index: 1;
+  }
   .Whatsapp-icon  {
     position: fixed;
     z-index: 99;
